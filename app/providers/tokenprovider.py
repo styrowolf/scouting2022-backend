@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from typing import Optional
 from jose import jwt
-from app.models import User
+from app.models.user import User
 
 class TokenProvider:
     SECRET_KEY = "8e136c7a2db2c8fd0371c3a2ff1bda6ef52dc0244ee3b2dfd2269ee44de7fa7e"
@@ -14,7 +14,7 @@ class TokenProvider:
         else:
             expire = datetime.utcnow() + timedelta(minutes=15)
         to_encode.update({"exp": expire})
-        encoded_jwt = jwt.encode(to_encode, self.SECRET_KEY, algorithm=self.ALGORITHM)
+        encoded_jwt = jwt.encode(to_encode, self.SECRET_KEY)
         return encoded_jwt
 
     def get_token(self, user: User):

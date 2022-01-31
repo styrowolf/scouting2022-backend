@@ -3,7 +3,7 @@ from app.constants import PREFIX
 from deta import Deta, _Base
 from passlib.context import CryptContext
 
-from app.models import UserInDB
+from app.models.user import UserInDB, User
 from typing import Optional
 
 class AuthenticationProvider:
@@ -32,9 +32,13 @@ class AuthenticationProvider:
             return False
         return user
 
-    def register_new_user(self, user: UserInDB):
+    def register_new_user(self, email: EmailStr, password: str):
+        user = UserInDB(email=email, teams=[], hashed_password=self.get_hashed_password(password))
+        return self.insert_new_user(user)
+
+    def insert_new_user(self, user: UserInDB):
         try:
-            self.db.insert(user.dict(), user.email)
+            self.db.insert(user.dict(), str(user.email))
             return True
         except:
             return False
