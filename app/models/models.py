@@ -19,8 +19,38 @@ class AllianceColor(str, Enum):
     BLUE = "blue"
     RED = "red"
 
+class Rung(str, Enum):
+    NONE = "none"
+    LOW = "low"
+    MIDDLE = "middle"
+    HIGH = "high"
+    TRAVERSAL = "traversal"
+
+    def to_points(self) -> int:
+        if self == Rung.LOW:
+            return 4
+        elif self == Rung.MIDDLE:
+            return 6
+        elif self == Rung.HIGH:
+            return 10
+        elif self == Rung.TRAVERSAL: 
+            return 15
+        else:
+            return 0
+
+class Result(str, Enum):
+    LOST = "lost"
+    DRAW = "draw"
+    WON = "won"
+
 class MatchStats(BaseModel):
-    pass
+    taxi: bool
+    auto_lower_hub: int
+    auto_higher_hub: int
+    teleop_lower_hub: int
+    teleop_higher_hub: int
+    bar: Rung
+    dsq_or_no_show: bool
 
 class TeamMatchStats(BaseModel):
     alliance_color: AllianceColor
@@ -63,8 +93,8 @@ class Match(Identifiable):
         except:
             self.stats.append(tms)
 
-    def get_stats_by_id(self, team: str):
-        query = list(filter(lambda tms: tms.team == id, self.stats))
+    def get_stats(self, team: int):
+        query = list(filter(lambda tms: tms.team == team, self.stats))
         if len(query) != 1:
             return None
         return query[0]

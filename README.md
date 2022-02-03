@@ -1,3 +1,12 @@
 # scouting2022-backend
 
-Install dependencies: pip3 install -r requirements.txt
+Installing dependencies: 
+```sh
+pip3 install -r requirements.txt
+```
+
+to-do:
+- add export to spreadsheet function
+    - probably generate the xlsx server-side, upload it unto deta drive
+    and serve it using an one-time link via FastAPI
+
