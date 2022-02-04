@@ -87,7 +87,7 @@ async def create_tournament(team: int, request: TournamentCreationRequest, user:
     if check_team(user, team):    
         return await tournament_creation_endpoint(data_provider, team, request)
 
-@app.post("create/{team}/{tournament_id}/match")
+@app.post("/create/{team}/{tournament_id}/match")
 async def create_match(team: int, tournament_id: str, request: MatchCreationRequest, user: User = Depends(get_user)):
     if check_team(user, team):
         return await match_creation_endpoint(data_provider, team, tournament_id, request)
