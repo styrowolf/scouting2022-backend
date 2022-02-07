@@ -11,7 +11,7 @@ async def tournament_creation_endpoint(data_provider: DataProvider, team: int, r
     data = data_provider.get_team_data(team)
     
     if data is None:
-        data = TeamData(team, [])
+        data = TeamData(team=team, tournaments=[])
 
     tournament = data.get_tournament_by_id(Tournament.generate_id(req.name))
 

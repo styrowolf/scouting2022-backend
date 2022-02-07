@@ -76,7 +76,7 @@ class Match(Identifiable):
     stats: list[TeamMatchStats]
 
     def from_name(name: str):
-        m = Match("", name, [])
+        m = Match(id="", name=name, stats=[])
         m.assign_id()
         return m
 
@@ -117,7 +117,7 @@ class Tournament(Identifiable):
     matches: list[Match]
 
     def from_name(name: str):
-        t = Tournament("", name, [])
+        t = Tournament(id="", name=name, matches=[])
         t.assign_id()
         return t
 
