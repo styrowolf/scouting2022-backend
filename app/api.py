@@ -39,7 +39,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 @app.get("/")
 async def index():
     from fastapi.responses import RedirectResponse
-    return RedirectResponse("http://scouting2022.deta.dev/static/index.html")
+    return RedirectResponse("/static/index.html")
 
 @app.post("/token", response_model=Token)
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
