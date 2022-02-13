@@ -1,1 +1,1 @@
-web: python3 remote.py
+web: gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.api:app
