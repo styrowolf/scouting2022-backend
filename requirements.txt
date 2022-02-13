@@ -9,3 +9,4 @@ passlib
 pydantic
 python-multipart
 argon2-cffi
+pydantic[email]
