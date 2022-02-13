@@ -34,8 +34,6 @@ data_provider = DataProvider(deta)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
 @app.get("/")
 async def index():
     from fastapi.responses import RedirectResponse
@@ -107,4 +105,4 @@ async def get_data(team: int, user: User = Depends(get_user)):
         return await retrieve_data_endpoint(data_provider, team)
 
 
-# async def 
+app.mount("/", StaticFiles(directory="static"), name="static")
