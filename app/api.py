@@ -1,5 +1,6 @@
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.staticfiles import StaticFiles
 
 from deta import Deta
 from jose import jwt, JWTError
@@ -33,9 +34,12 @@ data_provider = DataProvider(deta)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
 @app.get("/")
 async def index():
-    return "welcome to rrs-api"
+    from fastapi.responses import RedirectResponse
+    return RedirectResponse("http://scouting2022.deta.dev/static/index.html")
 
 @app.post("/token", response_model=Token)
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
