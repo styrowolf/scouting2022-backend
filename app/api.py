@@ -34,6 +34,11 @@ data_provider = DataProvider(deta)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
+@app.get("/")
+async def index():
+    from fastapi.responses import RedirectResponse
+    return RedirectResponse("/index.html")
+
 @app.post("/token", response_model=Token)
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
     user = auth_provider.authenticate_user(form_data.username, form_data.password)
