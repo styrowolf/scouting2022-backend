@@ -63157,11 +63157,14 @@ case 4:p.sq1(0,n)
 case 1:return A.T(q,r)}})
 return A.U($async$mp,r)},
 pp(a,b,c){return this.a4U(0,b,c)},
-a4U(a,b,c){var s=0,r=A.V(t.H),q=this,p
+a4U(a,b,c){var s=0,r=A.V(t.H),q=this,p,o,n,m
 var $async$pp=A.P(function(d,e){if(d===1)return A.S(e,r)
 while(true)switch(s){case 0:p=new A.nX(b,c)
+o=A.fL("https://whispering-retreat-82988.herokuapp.com/register",0,null)
+n=t.N
+m=B.Y.ma(A.am(["email",p.a,"password",p.b],n,t.z),null)
 s=2
-return A.N(new A.rB(A.b_(t.Gf)).ib("POST",A.fL("https://whispering-retreat-82988.herokuapp.com/register",0,null),null,B.Y.ma(A.am(["email",p.a,"password",p.b],t.N,t.z),null),null),$async$pp)
+return A.N(new A.rB(A.b_(t.Gf)).ib("POST",o,A.am(["Content-Type","application/json; charset=utf-8"],n,n),m,null),$async$pp)
 case 2:s=3
 return A.N(q.a3s(p),$async$pp)
 case 3:return A.T(null,r)}})
