@@ -31,7 +31,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware, 
-    allow_origins=["https://arcscouting.vercel.app"],
+    allow_origins=["https://arcscouting.vercel.app", "https://arc-s.34343434.xyz"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]
