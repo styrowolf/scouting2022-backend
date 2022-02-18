@@ -1,6 +1,7 @@
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 
 from deta import Deta
 from jose import jwt, JWTError
@@ -27,6 +28,14 @@ deta_project_key = "a0pvuks1_DqYg7DWJaY9q2xq918Dz7sSnFBn777NM"
 deta = Deta(deta_project_key)
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware, 
+    allow_origins=["https://arcscouting.vercel.app"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 auth_provider = AuthenticationProvider(deta)
 token_provider = TokenProvider()
